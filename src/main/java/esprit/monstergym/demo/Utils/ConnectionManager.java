@@ -22,6 +22,8 @@ public class ConnectionManager {
         return connection;
     }
 
+
+
     // Method to close the connection
     public static void closeConnection(Connection connection) {
         if (connection != null) {

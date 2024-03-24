@@ -45,10 +45,10 @@ public class Main {
         displayAllUsers(userService);
 
         // Creation of two new users
-        User newUser1 = new User(
-                2, // Example ID, replace with actual ID if necessary
-                "newuser1",
-                "newuser1@example.com",
+        User newUser3 = new User(
+                3, // Example ID, replace with actual ID if necessary
+                "newuser3",
+                "newuser3@example.com",
                 "{\"role\":\"user\"}", // Example roles JSON string, replace with actual JSON string if necessary
                 "abc123",
                 "password123",
@@ -61,10 +61,10 @@ public class Main {
                 "new_borchure_filename_1"
         );
 
-        User newUser2 = new User(
-                3, // Example ID, replace with actual ID if necessary
-                "newuser2",
-                "newuser2@example.com",
+        User newUser4 = new User(
+                4, // Example ID, replace with actual ID if necessary
+                "newuser4",
+                "newuser4@example.com",
                 "{\"role\":\"user\"}", // Example roles JSON string, replace with actual JSON string if necessary
                 "abc123",
                 "password123",
@@ -78,8 +78,8 @@ public class Main {
         );
 
         // Create and display two new users
-        userService.create(newUser1);
-        userService.create(newUser2);
+        userService.create(newUser3);
+        userService.create(newUser4);
         System.out.println("After creating two new users:");
         displayAllUsers(userService);
     }
