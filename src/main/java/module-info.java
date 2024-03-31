@@ -8,8 +8,12 @@ module esprit.monstergym.demo {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires java.desktop;
+    requires jbcrypt;
 
     opens esprit.monstergym.demo.Controllers to javafx.fxml; // Add this line to open the Main package
     exports esprit.monstergym.demo;
     exports esprit.monstergym.demo.Controllers;
+    exports esprit.monstergym.demo.Entities; // Ajoutez cette ligne pour exporter le package Entities
+    exports esprit.monstergym.demo.Service;
+
 }

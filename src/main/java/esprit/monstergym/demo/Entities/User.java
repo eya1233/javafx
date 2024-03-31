@@ -1,6 +1,7 @@
 package esprit.monstergym.demo.Entities;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class User {
     private int id;
@@ -18,7 +19,12 @@ public class User {
     private String brochureFilename;
 
     // Constructors
-    public User() {
+    public User(String text, String tfEmailText, String tfNumberText, String tfPasswordText, LocalDate tfDate) {
+        this.username = text;
+        this.email = tfEmailText;
+        this.numero = tfNumberText;
+        this.password = tfPasswordText;
+        this.dateNaissance = Date.valueOf(tfDate);
     }
 
     public User(int id, String username, String email, String roles, String resetToken, String password, boolean isVerified, Date dateNaissance, String numero, Integer cin, Integer etat, String imageUrl, String brochureFilename) {

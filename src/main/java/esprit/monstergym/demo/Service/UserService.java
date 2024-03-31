@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 public class UserService implements IService<User> {
 
@@ -112,5 +114,135 @@ public class UserService implements IService<User> {
         }
         return userList;
     }
+
+    private Connection conn;
+
+
+
+    public boolean SignUpUser(User user) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        boolean success = false;
+
+      //  String query = "INSERT INTO user ( username, email, roles, reset_token, password, is_verified, date_naissance, numero, cin, etat, image_url, borchure_filename) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO user ( username, email, password,date_naissance, numero) VALUES ( ?, ?, ?, ?, ?)";
+        try {
+            conn = ConnectionManager.getConnection(); // Initialize conn
+
+            // Vérifier si l'e-mail existe déjà dans la base de données
+            preparedStatement = conn.prepareStatement("SELECT email FROM user WHERE email = ?");
+            preparedStatement.setString(1, user.getEmail());
+            resultSet = preparedStatement.executeQuery();
+
+            // Si l'e-mail n'existe pas, insérer l'utilisateur dans la base de données
+            if (!resultSet.isBeforeFirst()) {
+                // Hasher le mot de passe avant de l'enregistrer dans la base de données
+                String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+
+                // Préparer la requête d'insertion avec les données de l'utilisateur
+                preparedStatement = conn.prepareStatement(query);
+                preparedStatement.setString(1, user.getUsername());
+                preparedStatement.setString(2, user.getEmail());
+              //  preparedStatement.setString(3, user.getRoles());
+              //  preparedStatement.setString(4, user.getResetToken());
+                preparedStatement.setString(3, hashedPassword);
+               // preparedStatement.setBoolean(6, user.isVerified());
+                preparedStatement.setDate(4, user.getDateNaissance());
+                preparedStatement.setInt(5, Integer.parseInt(user.getNumero()));
+               // preparedStatement.setInt(10, user.getEtat());
+                //preparedStatement.setString(11, user.getImageUrl());
+               // preparedStatement.setString(12, user.getBrochureFilename());
+
+
+                // Exécuter la requête d'insertion
+                preparedStatement.executeUpdate();
+
+                // L'enregistrement de l'utilisateur est un succès
+                success = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            // Fermer les ressources
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (conn != null) {
+                    conn.close(); // Close connection
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return success;
+    }
+
+    public User authenticate(String email, String password) {
+        User authenticatedUser = null;
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            conn = ConnectionManager.getConnection(); // Initialize conn
+
+            // Prepare the query to select user by email
+            String query = "SELECT * FROM user WHERE email = ?";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, email);
+
+            // Execute the query
+            resultSet = preparedStatement.executeQuery();
+
+            // If a user is found with the provided email
+            if (resultSet.next()) {
+                // Verify the password
+                String hashedPasswordFromDB = resultSet.getString("password");
+                if (BCrypt.checkpw(password, hashedPasswordFromDB)) {
+                    // Passwords match, create a User object with the retrieved data
+                    authenticatedUser = new User(
+                            resultSet.getInt("id"),
+                            resultSet.getString("username"),
+                            resultSet.getString("email"),
+                            resultSet.getString("roles"),
+                            resultSet.getString("reset_token"),
+                            resultSet.getString("password"),
+                            resultSet.getBoolean("is_verified"),
+                            resultSet.getDate("date_naissance"),
+                            resultSet.getString("numero"),
+                            resultSet.getInt("cin"),
+                            resultSet.getInt("etat"),
+                            resultSet.getString("image_url"),
+                            resultSet.getString("borchure_filename")
+                    );
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserService.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            // Close resources
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (conn != null) {
+                    conn.close(); // Close connection
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return authenticatedUser;
+    }
+
 
 }

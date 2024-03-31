@@ -8,15 +8,18 @@ package esprit.monstergym.demo.Controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import esprit.monstergym.demo.Entities.User;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  *
@@ -27,8 +30,17 @@ public class MainController implements Initializable {
     @FXML
     private VBox vbox;    
     private Parent fxml;
-    
-    
+
+    private Stage primaryStage;
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+    private signInController signInController;
+
+    public void setSignInController(signInController signInController) {
+        this.signInController = signInController;
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -37,26 +49,26 @@ public class MainController implements Initializable {
         t.play();
         t.setOnFinished((e) ->{
             try{
-                fxml = FXMLLoader.load(getClass().getResource("/esprit/monstergym/demo/SignIn.fxml"));
+                fxml = FXMLLoader.load(getClass().getResource("/esprit/monstergym/demo/SigIn.fxml"));
                 vbox.getChildren().removeAll();
                 vbox.getChildren().setAll(fxml);
             }catch(IOException ex){
-                
+                System.out.println(ex.getMessage());
             }
         });
     }
     @FXML
     private void open_signin(ActionEvent event){
-          TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
-        t.setToX(vbox.getLayoutX() * 20);
+        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
+        t.setToX(0);
         t.play();
         t.setOnFinished((e) ->{
             try{
-                fxml = FXMLLoader.load(getClass().getResource("/esprit/monstergym/demo/SignIn.fxml"));
+                fxml = FXMLLoader.load(getClass().getResource("/esprit/monstergym/demo/SigIn.fxml"));
                 vbox.getChildren().removeAll();
                 vbox.getChildren().setAll(fxml);
             }catch(IOException ex){
-                
+
             }
         });
     }   
@@ -74,7 +86,40 @@ public class MainController implements Initializable {
                 
             }
         });
-    } 
+    }
+
+    public void switchToSignInView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/esprit/monstergym/demo/SigIn.fxml"));
+            Parent root = loader.load();
+
+            // Set the reference to signInController
+            signInController signInController = loader.getController();
+            signInController.setMainController(this);
+
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void switchToHelloView(User user) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/esprit/monstergym/demo/hello-view.fxml"));
+            Parent root = loader.load();
+
+            // Pass the user to the HelloController
+            HelloController helloController = loader.getController();
+
+            Scene scene = new Scene(root);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     }
     
 

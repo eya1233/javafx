@@ -5,13 +5,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="480.0" styleClass="blue-panel" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="480.0" styleClass="blue-panel" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="esprit.monstergym.demo.Controllers.signUpController">
    <children>
       <Label text="Sign Up" textFill="#2196f3">
          <font>
@@ -21,64 +21,99 @@
             <Insets left="20.0" />
          </VBox.margin>
       </Label>
-      <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+      <VBox prefHeight="68.0" prefWidth="480.0">
          <children>
-            <TextField fx:id="tfFullName" promptText="Full Name" styleClass="tf_box" HBox.hgrow="ALWAYS" />
-            <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="tfFullName" promptText="Full Name" styleClass="tf_box" HBox.hgrow="ALWAYS" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
+               </children>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="lbFullName" prefHeight="35.0" prefWidth="478.0" textFill="RED" />
          </children>
-         <VBox.margin>
-            <Insets left="15.0" right="15.0" top="20.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="128.0" prefHeight="40.0" prefWidth="200.0">
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <TextField fx:id="tfNumber" promptText="Number" styleClass="tf_box" HBox.hgrow="ALWAYS" />
-            <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="tfNumber" promptText="Number" styleClass="tf_box" HBox.hgrow="ALWAYS" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
+               </children>
+            </HBox>
+            <Label fx:id="lbNumber" prefHeight="35.0" prefWidth="478.0" textFill="RED" />
          </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="148.0" prefHeight="40.0" prefWidth="200.0">
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <DatePicker fx:id="tfDate" prefHeight="30.0" prefWidth="452.0" promptText="Birth date">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </DatePicker>
-            <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <DatePicker fx:id="tfDate" prefHeight="30.0" prefWidth="452.0" promptText="Birth date">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </DatePicker>
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
+               </children>
+            </HBox>
+            <Label fx:id="lbDate" prefHeight="35.0" prefWidth="478.0" textFill="RED" />
          </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <TextField fx:id="tfEmail" promptText="Email" styleClass="tf_box" HBox.hgrow="ALWAYS" />
-            <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="tfEmail" promptText="Email" styleClass="tf_box" HBox.hgrow="ALWAYS" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
+               </children>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="lbEmail" prefHeight="35.0" prefWidth="478.0" textFill="RED" />
          </children>
-         <VBox.margin>
-            <Insets left="15.0" right="15.0" top="15.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="224.0" prefHeight="40.0" prefWidth="480.0">
+      </VBox>
+      <VBox layoutX="10.0" layoutY="40.0" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <TextField fx:id="tfConfirmEmail" prefHeight="30.0" prefWidth="261.0" promptText="Confirm Email" styleClass="tf_box" HBox.hgrow="ALWAYS" />
-            <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="480.0">
+               <children>
+                  <TextField fx:id="tfConfirmEmail" prefHeight="30.0" prefWidth="261.0" promptText="Confirm Email" styleClass="tf_box" HBox.hgrow="ALWAYS" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="USER" size="1.3em" />
+               </children>
+            </HBox>
+            <Label fx:id="lbConfirmEmail" prefHeight="35.0" prefWidth="478.0" textFill="RED" />
          </children>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+      </VBox>
+      <VBox layoutX="10.0" layoutY="40.0" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <TextField fx:id="tfPassword" promptText="Password" styleClass="tf_box" HBox.hgrow="ALWAYS" />
-            <FontAwesomeIconView fill="WHITE" glyphName="LOCK" size="1.3em" />
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <PasswordField fx:id="tfPassword" prefHeight="30.0" prefWidth="443.0" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="LOCK" layoutX="448.0" layoutY="31.0" size="1.3em" />
+               </children>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="lbPassword" prefHeight="35.0" prefWidth="478.0" textFill="RED" />
          </children>
-         <VBox.margin>
-            <Insets left="15.0" right="15.0" top="20.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="304.0" prefHeight="40.0" prefWidth="200.0">
+      </VBox>
+      <VBox layoutX="10.0" layoutY="40.0" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <TextField fx:id="tfConfirmPassword" promptText="Confirm Password" styleClass="tf_box" HBox.hgrow="ALWAYS" />
-            <FontAwesomeIconView fill="WHITE" glyphName="LOCK" size="1.3em" />
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <PasswordField fx:id="tfConfirmPassword" prefHeight="30.0" prefWidth="463.0" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="LOCK" layoutX="473.0" layoutY="31.0" size="1.3em" />
+               </children>
+            </HBox>
+            <Label fx:id="lbConfirmPassword" prefHeight="35.0" prefWidth="478.0" textFill="RED" />
          </children>
-      </HBox>
+      </VBox>
       <Button fx:id="btnsignUp" mnemonicParsing="false" onAction="#fnSignup" prefHeight="38.0" prefWidth="456.0" styleClass="blue-btn" text="Sign Up" textFill="WHITE">
          <font>
             <Font size="17.0" />
