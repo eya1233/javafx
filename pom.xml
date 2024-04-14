@@ -60,8 +60,62 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.28</version> <!-- Or the latest version available -->
     </dependency>
+    <dependency>
+      <groupId>de.jensd</groupId>
+      <artifactId>fontawesomefx-fontawesome</artifactId>
+      <version>4.7.0-9.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.14</version> <!-- Remplacez cette version par celle que vous souhaitez utiliser -->
+    </dependency>
+    <dependency>
+      <groupId>org.mindrot</groupId>
+      <artifactId>jbcrypt</artifactId>
+      <version>0.4</version>
+    </dependency>
+      <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-base</artifactId>
+          <version>17.0.6</version>
+      </dependency>
+      <dependency>
+          <groupId>jakarta.mail</groupId>
+          <artifactId>jakarta.mail-api</artifactId>
+          <version>2.1.2</version>
+      </dependency>
+      <dependency>
+          <groupId>javax.mail</groupId>
+          <artifactId>mail</artifactId>
+          <version>1.5.0-b01</version>
+      </dependency>
+
+      <dependency>
+          <groupId>io.github.typhon0</groupId>
+          <artifactId>AnimateFX</artifactId>
+          <version>1.2.0</version>
+      </dependency>
+      <dependency>
+          <groupId>eu.hansolo</groupId>
+          <artifactId>toolbox</artifactId>
+          <version>17.0.35</version>
+      </dependency>
+      <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-graphics</artifactId>
+          <version>17.0.6</version>
+      </dependency>
+      <!-- Thanks for using https://jar-download.com -->
 
   </dependencies>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+  </repositories>
 
   <build>
     <plugins>

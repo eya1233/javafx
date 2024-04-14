@@ -16,8 +16,8 @@ public class Main {
         Date sqlDate = new Date(currentDate.getTime());
         // Test creating a new user
         UserService userService = new UserService();
-        User newUser = new User(
-                1, // Example ID, replace with actual ID if necessary
+       /* User newUser = new User(
+                2, // Example ID, replace with actual ID if necessary
                 "testuser",
                 "testuser@example.com",
                 "{\"role\":\"user\"}", // Example roles JSON string, replace with actual JSON string if necessary
@@ -45,10 +45,10 @@ public class Main {
         displayAllUsers(userService);
 
         // Creation of two new users
-        User newUser1 = new User(
-                2, // Example ID, replace with actual ID if necessary
-                "newuser1",
-                "newuser1@example.com",
+        User newUser3 = new User(
+                26, // Example ID, replace with actual ID if necessary
+                "newuser3",
+                "newuser3@example.com",
                 "{\"role\":\"user\"}", // Example roles JSON string, replace with actual JSON string if necessary
                 "abc123",
                 "password123",
@@ -61,10 +61,10 @@ public class Main {
                 "new_borchure_filename_1"
         );
 
-        User newUser2 = new User(
-                3, // Example ID, replace with actual ID if necessary
-                "newuser2",
-                "newuser2@example.com",
+        User newUser4 = new User(
+                27, // Example ID, replace with actual ID if necessary
+                "newuser4",
+                "newuser4@example.com",
                 "{\"role\":\"user\"}", // Example roles JSON string, replace with actual JSON string if necessary
                 "abc123",
                 "password123",
@@ -78,8 +78,8 @@ public class Main {
         );
 
         // Create and display two new users
-        userService.create(newUser1);
-        userService.create(newUser2);
+        userService.create(newUser3);
+        userService.create(newUser4);
         System.out.println("After creating two new users:");
         displayAllUsers(userService);
     }
@@ -89,6 +89,6 @@ public class Main {
         System.out.println("All users:");
         for (User user : userList) {
             System.out.println(user);
-        }
+        }*/
     }
 }
