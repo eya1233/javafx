@@ -1,5 +1,7 @@
 package esprit.monstergym.demo.Entities;
 
+import javafx.scene.control.Button;
+
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -10,7 +12,7 @@ public class User {
     private String roles;
     private String resetToken;
     private String password;
-    private boolean isVerified;
+    private boolean is_verified;
     private Date dateNaissance;
     private String numero;
     private Integer cin;
@@ -18,23 +20,31 @@ public class User {
     private String imageUrl;
     private String brochureFilename;
 
+    public static User Current_User;
+
+
+
+    private boolean isAdmin;
+
+
     // Constructors
-    public User(String text, String tfEmailText, String tfNumberText, String tfPasswordText, LocalDate tfDate) {
+    public User(String text, String tfEmailText, String tfNumberText, String tfPasswordText, LocalDate tfDate,String role) {
         this.username = text;
         this.email = tfEmailText;
         this.numero = tfNumberText;
         this.password = tfPasswordText;
         this.dateNaissance = Date.valueOf(tfDate);
+        this.roles = role;
     }
 
-    public User(int id, String username, String email, String roles, String resetToken, String password, boolean isVerified, Date dateNaissance, String numero, Integer cin, Integer etat, String imageUrl, String brochureFilename) {
+    public User(int id, String username, String email, String roles, String resetToken, String password, boolean is_verified, Date dateNaissance, String numero, Integer cin, Integer etat, String imageUrl, String brochureFilename) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.roles = roles;
         this.resetToken = resetToken;
         this.password = password;
-        this.isVerified = isVerified;
+        this.is_verified = is_verified;
         this.dateNaissance = dateNaissance;
         this.numero = numero;
         this.cin = cin;
@@ -42,6 +52,57 @@ public class User {
         this.imageUrl = imageUrl;
         this.brochureFilename = brochureFilename;
     }
+
+    public User(String username, String email, String password, Date dateNaissance) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+
+        this.password = password;
+        this.dateNaissance = dateNaissance;
+        this.numero = numero;
+
+
+
+    }
+    public User(String numero, String username, String email, boolean is_verified, int etat) {
+        this.numero = numero;
+        this.username = username;
+        this.email = email;
+        this.is_verified = is_verified;
+        this.etat = etat;
+    }
+    public User(String numero, String username, String email, Integer etat) {
+        this.numero = numero;
+        this.username = username;
+        this.email = email;
+        this.etat = etat;
+
+    }
+
+    public User() {
+
+    }
+
+    public User(String numero, String username, String email,  Button btnBLock) {
+        this.numero = numero;
+        this.username = username;
+        this.email = email;
+        this.etat=etat;
+    }
+
+    public User(String username, String email, String numTel, boolean isBlocked) {
+    }
+
+  /* public User(String username, String email, String numero, boolean etat) {
+
+        this.numero = numero;
+        this.username = username;
+        this.email = email;
+        // Initialiser les autres propriétés
+        this.etat = new SimpleStringProperty(etat ? "Deblocked" : "Blocked");
+    }*/
+
 
     // Getters and Setters
     // id
@@ -99,12 +160,12 @@ public class User {
     }
 
     // isVerified
-    public boolean isVerified() {
-        return isVerified;
+    public boolean getIs_verified() {
+        return is_verified;
     }
 
-    public void setVerified(boolean verified) {
-        isVerified = verified;
+    public void setIs_verified(boolean verified) {
+        is_verified = verified;
     }
 
     // dateNaissance
@@ -143,6 +204,7 @@ public class User {
         this.etat = etat;
     }
 
+
     // imageUrl
     public String getImageUrl() {
         return imageUrl;
@@ -161,6 +223,14 @@ public class User {
         this.brochureFilename = brochureFilename;
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -170,7 +240,7 @@ public class User {
                 ", roles='" + roles + '\'' +
                 ", resetToken='" + resetToken + '\'' +
                 ", password='" + password + '\'' +
-                ", isVerified=" + isVerified +
+                ", is_verified=" + is_verified +
                 ", dateNaissance=" + dateNaissance +
                 ", numero='" + numero + '\'' +
                 ", cin=" + cin +
@@ -179,4 +249,14 @@ public class User {
                 ", borchureFilename='" + brochureFilename + '\'' +
                 '}';
     }
+
+    public static void setCurrent_User(User Current_User) {
+        User.Current_User = Current_User;
+    }
+
+    public boolean hasRole(String role) {
+        // Vérifie si l'utilisateur a le rôle spécifié
+        return this.roles.contains(role);
+    }
+
 }

@@ -1,7 +1,7 @@
 package esprit.monstergym.demo;
 
 import esprit.monstergym.demo.Controllers.MainController;
-import esprit.monstergym.demo.HelloApplication;
+import esprit.monstergym.demo.Controllers.signInController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,18 +10,22 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 public class MainFx extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/esprit/monstergym/demo/Main.fxml"));
+        // Load the FXML file for SignInController
 
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root);
+
+        // Load the FXML file for MainController
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/esprit/monstergym/demo/Main.fxml"));
+        Parent mainRoot = mainLoader.load();
+
+        // Set up the scene with the main root
+        Scene scene = new Scene(mainRoot);
         scene.setFill(Color.TRANSPARENT);
+
+        // Set up the stage
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
@@ -34,4 +38,3 @@ public class MainFx extends Application {
         launch(args);
     }
 }
-

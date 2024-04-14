@@ -8,6 +8,8 @@ package esprit.monstergym.demo.Controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import esprit.monstergym.demo.Entities.User;
 import javafx.animation.TranslateTransition;
@@ -15,21 +17,25 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 
 /**
  *
  * @author Admin
  */
-public class MainController implements Initializable {   
+public class MainController implements Initializable {
      
     @FXML
-    private VBox vbox;    
-    private Parent fxml;
+    public VBox vbox;
+    public Parent fxml;
 
     private Stage primaryStage;
 
@@ -71,7 +77,7 @@ public class MainController implements Initializable {
 
             }
         });
-    }   
+    }
     @FXML
     private void open_signup(ActionEvent event){
           TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
@@ -120,6 +126,22 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void btnForgetPassAction(ActionEvent event) {
+        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
+        t.setToX(0);
+        t.play();
+        t.setOnFinished((e) ->{
+            try {
+                fxml = FXMLLoader.load(getClass().getResource("/esprit/monstergym/demo/ForgetPassword.fxml"));
+                vbox.getChildren().removeAll();
+                vbox.getChildren().setAll(fxml);
+
+            } catch (IOException ex) {
+            }
+        });
     }
+
+}
     
 

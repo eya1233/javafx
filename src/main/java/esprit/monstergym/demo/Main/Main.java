@@ -16,8 +16,8 @@ public class Main {
         Date sqlDate = new Date(currentDate.getTime());
         // Test creating a new user
         UserService userService = new UserService();
-        User newUser = new User(
-                1, // Example ID, replace with actual ID if necessary
+       /* User newUser = new User(
+                2, // Example ID, replace with actual ID if necessary
                 "testuser",
                 "testuser@example.com",
                 "{\"role\":\"user\"}", // Example roles JSON string, replace with actual JSON string if necessary
@@ -46,7 +46,7 @@ public class Main {
 
         // Creation of two new users
         User newUser3 = new User(
-                3, // Example ID, replace with actual ID if necessary
+                26, // Example ID, replace with actual ID if necessary
                 "newuser3",
                 "newuser3@example.com",
                 "{\"role\":\"user\"}", // Example roles JSON string, replace with actual JSON string if necessary
@@ -62,7 +62,7 @@ public class Main {
         );
 
         User newUser4 = new User(
-                4, // Example ID, replace with actual ID if necessary
+                27, // Example ID, replace with actual ID if necessary
                 "newuser4",
                 "newuser4@example.com",
                 "{\"role\":\"user\"}", // Example roles JSON string, replace with actual JSON string if necessary
@@ -89,6 +89,6 @@ public class Main {
         System.out.println("All users:");
         for (User user : userList) {
             System.out.println(user);
-        }
+        }*/
     }
 }

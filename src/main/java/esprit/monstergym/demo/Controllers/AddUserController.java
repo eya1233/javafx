@@ -16,10 +16,8 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class signUpController implements Initializable {
+public class AddUserController implements Initializable {
 
-    @FXML
-    private Label lbConfirmEmail;
 
     @FXML
     private Label lbConfirmPassword;
@@ -39,8 +37,7 @@ public class signUpController implements Initializable {
     @FXML
     private Label lbPassword;
 
-    @FXML
-    private TextField tfConfirmEmail;
+
 
     @FXML
     private PasswordField tfConfirmPassword;
@@ -59,20 +56,18 @@ public class signUpController implements Initializable {
 
     @FXML
     private PasswordField tfPassword;
-    @FXML
-    private ComboBox<String> tfRoles;
 
     private boolean bConfirmEmail=false,bEqualPassword = false, bConfirmPassword = false, bDate = false, bName = false, bEmail = false, bAdd = false, bTel = false, bPass = false, bConfPass = false;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+        public void initialize(URL url, ResourceBundle rb) {
         // Add event listeners to text fields
         tfEmail.setOnKeyReleased(this::validateEmail);
-        tfConfirmEmail.setOnKeyReleased(this::validateConfirmEmail);
+
         tfPassword.setOnKeyReleased(this::validatePassword);
         tfFullName.setOnKeyReleased(this::validatePassword);
         tfConfirmPassword.setOnKeyReleased(this::validatePassword);
-        tfRoles.getItems().addAll("Client", "Coach");
+
     }
 
     @FXML
@@ -85,7 +80,7 @@ public class signUpController implements Initializable {
         // Validate each field and set corresponding boolean flags
         bName = !tfFullName.getText().isEmpty();
         bEmail = isValidEmail(tfEmail.getText());
-        bConfirmEmail = tfConfirmEmail.getText().equals(tfEmail.getText());
+
         bTel = validateNumero(tfNumber.getText());
         String passwordError = isValidPassword(tfPassword.getText(), tfFullName.getText());
         if (passwordError != null) {
@@ -99,16 +94,10 @@ public class signUpController implements Initializable {
         bDate = validateDate(tfDate);
 
         // Check if all fields are valid
-        if (bName && bEmail && bConfirmEmail && bTel && bPass && bConfPass && bEqualPassword && bDate) {
-            String role = "[ROLE_CLIENT]";
-            if(tfRoles.getValue() != null && !tfRoles.getValue().equals("")){
-                if(tfRoles.getValue().equals("Coach")){
-                    role = "[ROLE_COACH]";
-                }
-            }
-            if (ps.SignUpUser(new User(tfFullName.getText(), tfEmail.getText(), tfNumber.getText(), tfPassword.getText(),tfDate.getValue(),role))) {
+        if (bName && bEmail &&  bTel && bPass && bConfPass && bEqualPassword && bDate) {
+            if (ps.SignUpUser(new User(tfFullName.getText(), tfEmail.getText(), tfNumber.getText(), tfPassword.getText(),tfDate.getValue(),"[ROLE_ADMIN]"))) {
                 // Assuming Main.fxml is the next view after signup
-                Parent root = FXMLLoader.load(getClass().getResource("/esprit/monstergym/demo/Main.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/esprit/monstergym/demo/DashboardAdmin.fxml"));
                 tfFullName.getScene().setRoot(root);
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -179,16 +168,8 @@ public class signUpController implements Initializable {
     }
 
     // Method to validate confirm email
-    private void validateConfirmEmail(KeyEvent event) {
-        String confirmEmail = tfConfirmEmail.getText();
-        if (confirmEmail.equals(tfEmail.getText())) {
-            bConfirmEmail = true;
-            lbConfirmEmail.setText("");
-        } else {
-            bConfirmEmail = false;
-            lbConfirmEmail.setText("Emails do not match");
-        }
-    }
+
+
 
     // Method to validate password
     private void validatePassword(KeyEvent event) {
