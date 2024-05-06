@@ -44,7 +44,8 @@ public class DashboardAdminController {
 
     @FXML
     private Button btnListServices;
-
+    @FXML
+    private Button btnParticiper;
     @FXML
     private Button btnListUsers;
 
@@ -56,7 +57,11 @@ public class DashboardAdminController {
 
     @FXML
     private Button btnProfil;
+    @FXML
+    private Button btnEvent;
 
+    @FXML
+    private Button btnEventCoach;
     @FXML
     private Button btncommande;
 
@@ -68,7 +73,8 @@ public class DashboardAdminController {
 
     @FXML
     private Button btnreclamation;
-
+    @FXML
+    private Button btnListRec;
     @FXML
     private Label hello;
 
@@ -118,6 +124,28 @@ public class DashboardAdminController {
             vBoxDashboardAdmin.getChildren().setAll(fxml);
 
         }
+        else if (event.getSource() == btnEvent) {
+            lplStatusMini.setText("/Home/Profil");
+            lplStatus.setText("Profil Settings");
+            vBoxDashboardAdmin.setVisible(true);
+            pnlStatus.setBackground(new Background(new BackgroundFill(Color.rgb(201, 179, 150),CornerRadii.EMPTY,Insets.EMPTY)));
+            new Swing(pnlStatus).play();
+            Parent fxml = FXMLLoader.load(getClass().getResource("/esprit/monstergym/demo/AffichageAdmin.fxml"));
+            vBoxDashboardAdmin.getChildren().removeAll();
+            vBoxDashboardAdmin.getChildren().setAll(fxml);
+        }
+
+        else if (event.getSource() == btnListRec) {
+            lplStatusMini.setText("/Home/Profil");
+            lplStatus.setText("Profil Settings");
+            vBoxDashboardAdmin.setVisible(true);
+            pnlStatus.setBackground(new Background(new BackgroundFill(Color.rgb(201, 179, 150),CornerRadii.EMPTY,Insets.EMPTY)));
+            new Swing(pnlStatus).play();
+            Parent fxml = FXMLLoader.load(getClass().getResource("/esprit/monstergym/demo/AdminParticipation.fxml"));
+            vBoxDashboardAdmin.getChildren().removeAll();
+            vBoxDashboardAdmin.getChildren().setAll(fxml);
+        }
+
 
     }
 

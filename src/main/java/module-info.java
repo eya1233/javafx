@@ -9,11 +9,13 @@ module esprit.monstergym.demo {
     requires java.sql;
     requires java.desktop;
     requires jbcrypt;
-    requires mail;
+
+
     requires AnimateFX;
     requires de.jensd.fx.glyphs.fontawesome;
-    //requires mail;
-    //requires java.mail;
+    requires mail;
+    requires org.apache.pdfbox;
+
 
     opens esprit.monstergym.demo.Controllers to javafx.fxml; // Add this line to open the Main package
     exports esprit.monstergym.demo;
